@@ -1,0 +1,38 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Гимтограмма{% endblock %}
+
+{% block content %}
+<div class="features">
+        <h1>Ликвидность BTC по Sber</h1>
+</div>
+{% endblock %}
+
+{% block diagram %}
+<div class="diagram" id="3">
+
+        <script src="https://www.google.com/jsapi"></script>
+          <script>
+           google.load("visualization", "1", {packages:["corechart"]});
+           google.setOnLoadCallback(drawChart);
+           function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+             ['time', 'USD'],
+             ['1 day', {{ day }}],
+             ['1 hour', {{ hour }}],
+             ['30 min', {{ m30 }}],
+             ['15 min', {{ m15 }}],
+             ['5 min', {{ m5 }}],
+             ['1 min', {{ m1 }}]
+            ]);
+            var options = {
+             hAxis: {title: 'Время'},
+             vAxis: {title: 'Обьем сделок в USD'}
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('3'));
+            chart.draw(data, options);
+           }
+          </script>
+            </div>
+
+{% endblock %}
